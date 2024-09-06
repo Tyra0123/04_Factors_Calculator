@@ -23,10 +23,9 @@ To exit the program, please type 'xxx'.
 def num_check(question):
     error = "Please enter a number that is between 1 and 200 inclusive\n"
     while True:
-
         response = input(question).lower()
         if response == "xxx":
-            return response
+            return "xxx"
 
         try:
             # ask the user for a number
