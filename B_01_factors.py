@@ -21,7 +21,7 @@ To exit the program, please type 'xxx'.
 
 # Ask user for an integer between 1 and 200.
 def num_check(question):
-    error = "Please enter a number that is between 1 and 200 inclusive\n"
+    error = "Please enter a number between 1 and 200\n"
     while True:
         response = input(question).lower()
         if response == "xxx":
@@ -53,8 +53,43 @@ if want_instructions == "":
     instructions()
 
 while True:
-    to_factor = num_check("To factor: ")
-    print("You chose to factor", to_factor)
+    # list to store the factors
+    all_factors = []
 
+    # ask user for number to be factorised
+    to_factor = num_check("\nEnter an integer (or xxx to quit): ")
+    all_factor = ""
+
+# Check if user wants to exit
     if to_factor == "xxx":
         break
+
+    for i in range(1, to_factor + 1):
+
+        # if it's a factor (0 remainder), add it to the list
+        if to_factor % i == 0:
+            all_factors.append(i)
+
+    # Set up headings
+    if to_factor > 1:
+        heading = f"Factors of {to_factor}"
+    else:
+        heading = "One is special..."
+
+    # output factors and comment
+    statement_generator(heading, "*")
+    print(all_factors)
+
+    # comments for squares / primes
+
+    # Prime numbers have only two factors
+    if len(all_factors) == 2:
+        print(f"{to_factor} is a prime number")
+
+    elif len(all_factors) == 1:
+        print("1 is UNITY (has only one factor)")
+        all_factors = ""
+
+    # check if the list has an odd number of factors
+    elif len(all_factors) % 2 == 1:
+        print(f"{to_factor} is a perfect square")
